@@ -11,8 +11,7 @@ This project contains automated tests for the Sauce Demo website using Cypress w
 
 1. Clone this repository:
    ```
-   git clone https://github.com/your-username/saucedemo-cypress.git
-   cd saucedemo-cypress
+   git clone https://github.com/Obaidul-007/cypress-pom-framework.git
    ```
 
 2. Install dependencies:
