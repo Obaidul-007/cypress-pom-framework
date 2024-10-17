@@ -1,3 +1,5 @@
+import LoginPage from '../pageObjects/LoginPage';
+
 describe('Cart and Purchase Functionality', () => {
     let users: any;
     let products: any;
@@ -11,23 +13,16 @@ describe('Cart and Purchase Functionality', () => {
       });
     });
   
-    beforeEach(() => {
-      // Intercept and stub any unauthorized requests
-      cy.intercept('POST', 'https://events.backtrace.io/**', {
-        statusCode: 200,
-        body: {}
-      }).as('backtraceEvents');
-      
-      // Reset session and set up initial state
-      cy.session('reset', () => {
-        cy.clearCookies();
-        cy.clearLocalStorage();
-      });
-      
+    beforeEach(() => { 
+      // **Sauce Demo Service Worker Workaround**
+      // Sauce Demo website's service-worker.js prevent the page's 'load' event from triggering in subsequent Cypress tests; 
+      // potentially freezing cy.visit() calls. To handle this, the following interceptor is added.
+      // Reference: https://filiphric.com/how-to-wait-for-page-to-load-in-cypress
+      cy.intercept('/service-worker.js', {
+        body: undefined
+       })      
       cy.visit('/');
-      cy.get('[data-test="username"]').type(users.standard.username);
-      cy.get('[data-test="password"]').type(users.standard.password);
-      cy.get('[data-test="login-button"]').click();
+      LoginPage.login(users.standard.username, users.standard.password);
     });
   
     it('should add products to cart and complete purchase', () => {
