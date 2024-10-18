@@ -41,6 +41,7 @@ npx cypress open
 
 ## Project Structure
 
+```
 cypress/
 ├── e2e/               # Test files
 │   ├── login.spec.ts
@@ -55,6 +56,7 @@ cypress/
 └── support/          # Support files
     ├── commands.ts
     └── e2e.ts
+```
 
 ## Assumptions and Limitations
 
