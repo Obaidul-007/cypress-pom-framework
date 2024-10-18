@@ -31,13 +31,13 @@ describe('Login Functionality', () => {
     });
 
     it('should login with valid credentials', () => {
-        LoginPage.login(users.standard.username, users.standard.password);
+        cy.login(users.standard.username, users.standard.password);
         cy.url().should('include', '/inventory.html');
         cy.get('.inventory_list').should('be.visible');
     });
 
     it('should not login with invalid credentials', () => {
-        LoginPage.login(users.invalid.username, users.invalid.password);
+        cy.login(users.invalid.username, users.invalid.password);
         // Add assertion for failed login
         cy.get('[data-test="error"]').should('be.visible');
     }); 

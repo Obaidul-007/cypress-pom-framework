@@ -1,5 +1,3 @@
-import LoginPage from '../pageObjects/LoginPage';
-
 describe('Cart and Purchase Functionality', () => {
     let users: any;
     let products: any;
@@ -22,7 +20,7 @@ describe('Cart and Purchase Functionality', () => {
         body: undefined
        })      
       cy.visit('/');
-      LoginPage.login(users.standard.username, users.standard.password);
+      cy.login(users.standard.username, users.standard.password);
     });
   
     it('should add products to cart and complete purchase', () => {
